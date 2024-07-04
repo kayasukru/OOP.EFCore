@@ -11,8 +11,8 @@ using OOP.EFCore.ConsoleApp.DAL;
 namespace OOP.EFCore.ConsoleApp.Migrations
 {
     [DbContext(typeof(BookAppDbContext))]
-    [Migration("20240704112208_mig")]
-    partial class mig
+    [Migration("20240704122108_mig2_book")]
+    partial class mig2_book
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,9 @@ namespace OOP.EFCore.ConsoleApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"));
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("BookId");
 

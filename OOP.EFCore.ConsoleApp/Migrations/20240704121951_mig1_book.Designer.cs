@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OOP.EFCore.ConsoleApp.DAL;
 
@@ -10,9 +11,11 @@ using OOP.EFCore.ConsoleApp.DAL;
 namespace OOP.EFCore.ConsoleApp.Migrations
 {
     [DbContext(typeof(BookAppDbContext))]
-    partial class BookAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240704121951_mig1_book")]
+    partial class mig1_book
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +33,7 @@ namespace OOP.EFCore.ConsoleApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"));
 
                     b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BookId");
 

@@ -5,7 +5,7 @@
 namespace OOP.EFCore.ConsoleApp.Migrations
 {
     /// <inheritdoc />
-    public partial class mig : Migration
+    public partial class mig1_book : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +16,7 @@ namespace OOP.EFCore.ConsoleApp.Migrations
                 {
                     BookId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "varchar(150)", nullable: true)
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
