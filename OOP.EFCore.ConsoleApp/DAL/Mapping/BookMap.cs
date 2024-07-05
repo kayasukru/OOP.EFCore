@@ -20,12 +20,19 @@ namespace OOP.EFCore.ConsoleApp.DAL.Mapping
                 .HasMaxLength(250);
 
             builder.Property(b => b.CreatedDate)
-                .HasDefaultValue(DateTime.Now);
+                .HasDefaultValueSql("GETDATE()");
+
+            //Bire Çok (OneToMany) ilişki tanımı
+            builder.HasOne(b=>b.Category)
+                .WithMany(c=>c.Books)
+                .HasForeignKey(c=>c.CategoryId)
+                .OnDelete(DeleteBehavior.Cascade);
+
 
             builder.HasData(
-                new Book { BookId = 1, Title = "Devlet" },
-                new Book { BookId = 2, Title = "Yoldaki İşaretler" },
-                new Book { BookId = 3, Title = "Yalnızlık Sözleri" }
+                new Book { BookId = 1, Title = "Devlet", CategoryId = 3 },
+                new Book { BookId = 2, Title = "Yoldaki İşaretler", CategoryId = 3 },
+                new Book { BookId = 3, Title = "Yalnızlık Sözleri", CategoryId = 3 }
                 );
         }
     }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OOP.EFCore.ConsoleApp.DAL;
 
@@ -11,9 +12,11 @@ using OOP.EFCore.ConsoleApp.DAL;
 namespace OOP.EFCore.ConsoleApp.Migrations
 {
     [DbContext(typeof(BookAppDbContext))]
-    partial class BookAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240704204316_BookCategoryIdNull")]
+    partial class BookCategoryIdNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,8 +47,6 @@ namespace OOP.EFCore.ConsoleApp.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.HasKey("BookId");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Books");
 
@@ -111,21 +112,6 @@ namespace OOP.EFCore.ConsoleApp.Migrations
                             CategoryId = 3,
                             CategoryName = "Roman"
                         });
-                });
-
-            modelBuilder.Entity("OOP.EFCore.ConsoleApp.Entities.Book", b =>
-                {
-                    b.HasOne("OOP.EFCore.ConsoleApp.Entities.Category", "Category")
-                        .WithMany("Books")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("OOP.EFCore.ConsoleApp.Entities.Category", b =>
-                {
-                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }
