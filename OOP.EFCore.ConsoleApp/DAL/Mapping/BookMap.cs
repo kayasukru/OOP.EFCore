@@ -25,8 +25,9 @@ namespace OOP.EFCore.ConsoleApp.DAL.Mapping
             //Bire Çok (OneToMany) ilişki tanımı
             builder.HasOne(b=>b.Category)
                 .WithMany(c=>c.Books)
-                .HasForeignKey(c=>c.CategoryId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(b=>b.CategoryId)
+                //.OnDelete(DeleteBehavior.Cascade); //Kaydı siler
+                .OnDelete(DeleteBehavior.SetNull); // kaydın ID'sini siler null yapar
 
 
             builder.HasData(

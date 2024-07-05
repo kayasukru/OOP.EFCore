@@ -12,11 +12,15 @@ namespace OOP.EFCore.ConsoleApp.Entities
         public int BookId { get; set; }
         public string? Title { get; set; }
         public DateTime CreatedDate { get; set; }
+        public decimal Price { get; set; }
 
         // foreign key
         public int? CategoryId { get; set; }
 
         //simple navigation propperty
         public Category Category { get; set; }
+
+        // navigation property
+        public BookDetail BookDetail { get; set; }
     }
 }
