@@ -14,13 +14,20 @@ namespace OOP.EFCore.ConsoleApp.Entities
         public DateTime CreatedDate { get; set; }
         public decimal Price { get; set; }
 
-        // foreign key
+
+        // foreign key -> Çoka bir ilişki - kategori/kitap ilişkisi
         public int? CategoryId { get; set; }
 
-        //simple navigation propperty
+        //simple navigation propperty -> Çoka bir ilişki - kategori/kitap ilişkisi
         public Category Category { get; set; }
 
-        // navigation property
+
+        // navigation property -> Bire bir ilişki - kitap ve kitap detayı  ilişkisi
         public BookDetail BookDetail { get; set; }
+
+
+        // collection navigation propperty -> çoka çok ilişki Kitap/Yazar ilişkisi
+        public ICollection<BookAuthor> BookAuthors { get; set; }
+
     }
 }

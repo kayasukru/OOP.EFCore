@@ -16,6 +16,7 @@ namespace OOP.EFCore.ConsoleApp.DAL.Mapping
 
             builder.Property(bd => bd.Year)
                 .HasDefaultValue(DateTime.Now.Year);
+                //.HasDefaultValueSql("GETDATE()");
 
             builder.HasOne(bd => bd.Book) // birebir ilişiki
                 .WithOne(b => b.BookDetail) //birebirilişki

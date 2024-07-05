@@ -11,15 +11,17 @@ namespace OOP.EFCore.ConsoleApp.DAL
 {
     public class BookAppDbContext : DbContext
     {
-        public DbSet<Book> Books { get; set; }
-        public DbSet<BookDetail> BookDetails { get; set; }
-        public DbSet<Category> Categories { get; set; }
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=SKYN\\SQLEXPRESS; Initial Catalog=BookAppDb; User=sa; Password=Password1; Integrated Security=True; MultipleActiveResultSets=False; Encrypt=False; TrustServerCertificate=False;");
         }
+
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<BookDetail> BookDetails { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<BookAuthor> BookAuthors { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,6 +45,12 @@ namespace OOP.EFCore.ConsoleApp.DAL
 
             //BookDetailMp sınıfı kullanılarak Code First işlemi
             modelBuilder.ApplyConfiguration(new BookDetailMap());
+
+            //AuthorMap sınıfı kullanılarak Code First işlemi
+            modelBuilder.ApplyConfiguration(new AuthorMap());
+
+            //BookAuthorMap sınıfı kullanılarak Code First işlemi
+            modelBuilder.ApplyConfiguration(new BookAuthorMap());
         }
     }
 }
